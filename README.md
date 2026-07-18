@@ -13,36 +13,36 @@ An end-to-end data engineering and analytics pipeline processing over **2.1 Mill
 
 ```text
 [Raw Realtor CSV Data] 
-       │
-       ▼ (Resilient Ingestion & VARCHAR Overrides)
-[src/ingest_data.py] ──> Stores into ──> [DuckDB Local Instance]
-                                                │
-                                                ▼ (Mean + 3*StdDev Filter)
+       |
+       v (Resilient Ingestion & VARCHAR Overrides)
+[src/ingest_data.py] --> Stores into --> [DuckDB Local Instance]
+                                                |
+                                                v (Mean + 3*StdDev Filter)
                                        [v_dashboard_properties View]
-                                                │
-                                                ▼ (Live Parameterized SQL)
+                                                |
+                                                v (Live Parameterized SQL)
                                        [Streamlit Interactive App]
 
 
 
 ## 📂 Project Structure
 
-    realestate-analytics-pipeline/
-    ├── .github/workflows/
-    │   └── python-app.yml
-    ├── data/
-    │   ├── raw/
-    │   └── processed/
-    ├── notebooks/
-    │   └── exploration.ipynb
-    ├── src/
-    │   ├── __init__.py
-    │   ├── analyze_data.py
-    │   ├── app.py
-    │   └── ingest_data.py
-    ├── .gitignore
-    ├── README.md
-    └── requirements.txt
+realestate-analytics-pipeline/
+├── .github/workflows/
+│   └── python-app.yml
+├── data/
+│   ├── raw/
+│   └── processed/
+├── notebooks/
+│   └── exploration.ipynb
+├── src/
+│   ├── __init__.py
+│   ├── analyze_data.py
+│   ├── app.py
+│   └── ingest_data.py
+├── .gitignore
+├── README.md
+└── requirements.txt
 
 ## 🚀 Quick Start & Installation
 
