@@ -11,15 +11,16 @@ An end-to-end data engineering and analytics pipeline processing over **2.1 Mill
 
 ## 🛠️ Pipeline Architecture
 
+```text
 [Raw Realtor CSV Data] 
-       |
-       v (Resilient Ingestion & VARCHAR Overrides)
-[src/ingest_data.py] --> Stores into --> [DuckDB Local Instance]
-                                                |
-                                                v (Mean + 3*StdDev Filter)
+       │
+       ▼ (Resilient Ingestion & VARCHAR Overrides)
+[src/ingest_data.py] ──> Stores into ──> [DuckDB Local Instance]
+                                                │
+                                                ▼ (Mean + 3*StdDev Filter)
                                        [v_dashboard_properties View]
-                                                |
-                                                v (Live Parameterized SQL)
+                                                │
+                                                ▼ (Live Parameterized SQL)
                                        [Streamlit Interactive App]
 
 ## 📂 Project Structure
