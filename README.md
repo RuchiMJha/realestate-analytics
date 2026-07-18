@@ -11,14 +11,56 @@ An end-to-end data engineering and analytics pipeline processing over **2.1 Mill
 
 ## 🛠️ Pipeline Architecture
 
-```text
 [Raw Realtor CSV Data] 
-       │
-       ▼ (Resilient Ingestion & VARCHAR Overrides)
-[src/ingest_data.py] ──> Stores into ──> [DuckDB Local Instance]
-                                                │
-                                                ▼ (Mean + 3*StdDev Filter)
+       |
+       v (Resilient Ingestion & VARCHAR Overrides)
+[src/ingest_data.py] --> Stores into --> [DuckDB Local Instance]
+                                                |
+                                                v (Mean + 3*StdDev Filter)
                                        [v_dashboard_properties View]
-                                                │
-                                                ▼ (Live Parameterized SQL)
+                                                |
+                                                v (Live Parameterized SQL)
                                        [Streamlit Interactive App]
+
+## 📂 Project Structure
+
+realestate-analytics-pipeline/
+├── .github/workflows/
+│   └── python-app.yml
+├── data/
+│   ├── raw/
+│   └── processed/
+├── notebooks/
+│   └── exploration.ipynb
+├── src/
+│   ├── __init__.py
+│   ├── analyze_data.py
+│   ├── app.py
+│   └── ingest_data.py
+├── .gitignore
+├── README.md
+└── requirements.txt
+
+## 🚀 Quick Start & Installation
+
+1. **Clone the repository and initialize the virtual environment:**
+   ```bash
+   git clone https://github.com/RuchiMJha/realestate-analytics.git
+   cd realestate-analytics-pipeline
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+
+2. Run the pipeline stages sequentially:
+Bash
+# Phase 1: Ingest, clean, and deduplicate raw data
+python src/ingest_data.py
+
+# Phase 2: Compute statistical ceilings and database views
+python src/analyze_data.py
+
+# Phase 3: Spin up the dynamic analytics dashboard
+streamlit run src/app.py
+📊 Analytical Takeaways & Discoveries
+Outlier Pruning: The raw dataset contained extreme anomalies (e.g., empty lots erroneously labeled as properties with millions of square feet of living space). Applying a Mean+3σ threshold systematically isolated and stripped out roughly 7,600 structural data corruptions while cleanly retaining valid high-end real estate listings.
+Database Optimization: By migrating from traditional memory-heavy DataFrame filtering to embedded SQL Views inside DuckDB, dashboard query latency dropped from seconds to virtually instantaneous updates, providing a production-grade user experience.
