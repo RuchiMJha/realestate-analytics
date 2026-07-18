@@ -24,22 +24,22 @@ An end-to-end data engineering and analytics pipeline processing over **2.1 Mill
 
 ## 📂 Project Structure
 
-realestate-analytics-pipeline/
-├── .github/workflows/
-│   └── python-app.yml
-├── data/
-│   ├── raw/
-│   └── processed/
-├── notebooks/
-│   └── exploration.ipynb
-├── src/
-│   ├── __init__.py
-│   ├── analyze_data.py
-│   ├── app.py
-│   └── ingest_data.py
-├── .gitignore
-├── README.md
-└── requirements.txt
+    realestate-analytics-pipeline/
+    ├── .github/workflows/
+    │   └── python-app.yml
+    ├── data/
+    │   ├── raw/
+    │   └── processed/
+    ├── notebooks/
+    │   └── exploration.ipynb
+    ├── src/
+    │   ├── __init__.py
+    │   ├── analyze_data.py
+    │   ├── app.py
+    │   └── ingest_data.py
+    ├── .gitignore
+    ├── README.md
+    └── requirements.txt
 
 ## 🚀 Quick Start & Installation
 
